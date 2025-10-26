@@ -20,7 +20,7 @@ function removeFile(FilePath) {
 
 router.get("/", async (req, res) => {
   let num = req.query.number;
-  async function RobinPair() {
+  async function SenuwaPair() {
     const { state, saveCreds } = await useMultiFileAuthState(`./session`);
     try {
       let SenuwaPairWeb = makeWASocket({
@@ -85,7 +85,7 @@ router.get("/", async (req, res) => {
             const mg = `🛑 *Do not share this code to anyone* 🛑`;
             const dt = await SenuwaPairWeb.sendMessage(user_jid, {
               image: {
-                url: "https://raw.githubusercontent.com/Dark-Robin/Bot-Helper/refs/heads/main/autoimage/Bot%20robin%20WP.jpg",
+                url: "https://github.com/senuff1234/Senuwa-md-whatsapp-bot/blob/main/images/Senuwa%20md.jpg?raw=true",
               },
               caption: sid,
             });
@@ -107,20 +107,20 @@ router.get("/", async (req, res) => {
           lastDisconnect.error.output.statusCode !== 401
         ) {
           await delay(10000);
-          RobinPair();
+          SenuwaPair();
         }
       });
     } catch (err) {
-      exec("pm2 restart Robin-md");
+      exec("pm2 restart Senuwa-md");
       console.log("service restarted");
-      RobinPair();
+      SenuwaPair();
       await removeFile("./session");
       if (!res.headersSent) {
         await res.send({ code: "Service Unavailable" });
       }
     }
   }
-  return await RobinPair();
+  return await SenuwaPair();
 });
 
 process.on("uncaughtException", function (err) {
@@ -129,4 +129,5 @@ process.on("uncaughtException", function (err) {
 });
 
 module.exports = router;
+
 
